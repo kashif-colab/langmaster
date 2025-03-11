@@ -4,7 +4,7 @@
     "slug": "LangMaster",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/images/icon.png",
+    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
       "package": "com.mkrlangmaster.LangMaster"
@@ -21,20 +21,19 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./app/images/favicon.png"
+      "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./app/images/splash-icon.png",
+          "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000000"
         }
-      ],
-      "expo-font"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
@@ -47,6 +46,12 @@
         "projectId": "a9990d10-035c-43cf-9e2a-1ae07b19723d"
       }
     },
-    "owner": "mkr-langmaster"
+    "owner": "mkr-langmaster",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a9990d10-035c-43cf-9e2a-1ae07b19723d"
+    }
   }
 }

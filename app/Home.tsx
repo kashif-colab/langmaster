@@ -12,9 +12,9 @@ const Home = () => {
       <View style={styles.section}>
         <Text style={styles.heading}>About LangMaster</Text>
         <Text style={styles.text}>
-          LangMaster is your all-in-one language learning companion. 
-          It helps you analyze text using OCR and Speech-to-Text (STT) technology, 
-          providing meanings, synonyms, and translations in Hindi, Kannada, and Urdu.
+          • LangMaster is your all-in-one language learning companion.
+          • Uses OCR and Speech-to-Text (STT) technology.
+          • Provides meanings, synonyms, and translations in Hindi, Kannada, and Urdu.
         </Text>
       </View>
 
@@ -26,6 +26,22 @@ const Home = () => {
         <Text style={styles.text}>• Synonym Finder: Expand your vocabulary with synonyms.</Text>
         <Text style={styles.text}>• Translations: Translate text into Hindi, Kannada, and Urdu.</Text>
       </View>
+      
+      <View style={styles.section}>
+        <Text style={styles.heading}>What's New</Text>
+        <Text style={styles.text}>• Improved accuracy in OCR and Speech-to-Text.</Text>
+        <Text style={styles.text}>• Added support for more languages.</Text>
+        <Text style={styles.text}>• Enhanced user interface for a seamless experience.</Text>
+        <Text style={styles.text}>• New interactive learning exercises.</Text>
+        <Text style={styles.text}>• Additional dictionary support with examples.</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.heading}>Purpose of LangMaster</Text>
+        <Text style={styles.text}>• Make language learning accessible and efficient.</Text>
+        <Text style={styles.text}>• Bridge the gap between languages through AI-driven tools.</Text>
+        <Text style={styles.text}>• Enable users to communicate and learn effortlessly.</Text>
+      </View>
     </ScrollView>
   );
 };
@@ -33,38 +49,41 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000', // Black background
+    backgroundColor: '#000',
   },
   logoContainer: {
     alignItems: 'center',
-    marginTop: 50,
+    marginVertical: 40,
   },
   logo: {
-    width: 300, 
-    height: 300,
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
   },
   title: {
-    color: 'gold', 
-    fontSize: 28,
-    marginTop: 20,
+    color: 'gold',
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginTop: 15,
   },
   section: {
-    padding: 20,
+    backgroundColor: '#222',
+    padding: 15,
+    marginVertical: 10,
+    borderRadius: 10,
+    marginHorizontal: 15,
   },
   heading: {
-    color: 'gold', 
-    fontSize: 22,
+    color: 'gold',
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   text: {
-    color: 'green', 
-    fontSize: 20,
-    marginBottom: 10,
-    lineHeight: 24,
+    color: 'green',
+    fontSize: 14,
+    lineHeight: 20,
   },
 });
 
