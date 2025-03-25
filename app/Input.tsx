@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Image, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Image, StyleSheet, ScrollView, ActivityIndicator, Clipboard, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CustomButton from '../components/CustomButton';
 
@@ -7,6 +7,7 @@ const Input = () => {
   const [inputText, setInputText] = useState('');
   const [correctedText, setCorrectedText] = useState('');
   const [wrongWords, setWrongWords] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
@@ -26,26 +27,23 @@ const Input = () => {
 
       let corrected = inputText;
       let incorrectWords = [];
+      let wordSuggestions = [];
 
       data.matches.forEach((match) => {
         const incorrectWord = corrected.substring(match.offset, match.offset + match.length);
         if (excludedWords.some((name) => incorrectWord.includes(name))) return;
 
-        incorrectWords.push({
-          word: incorrectWord,
-          suggestions: match.replacements.map((r) => r.value),
-        });
+        incorrectWords.push(incorrectWord);
+        wordSuggestions.push(match.replacements.map((r) => r.value).join(', '));
 
         if (match.replacements.length > 0) {
-          corrected =
-            corrected.slice(0, match.offset) +
-            match.replacements[0].value +
-            corrected.slice(match.offset + match.length);
+          corrected = corrected.slice(0, match.offset) + match.replacements[0].value + corrected.slice(match.offset + match.length);
         }
       });
 
       setCorrectedText(corrected);
       setWrongWords(incorrectWords);
+      setSuggestions(wordSuggestions);
     } catch (error) {
       console.error('Error analyzing text:', error);
     } finally {
@@ -53,10 +51,14 @@ const Input = () => {
     }
   };
 
+  const copyToClipboard = () => {
+    Clipboard.setString(correctedText);
+    alert('Text copied to clipboard!');
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image source={require('./images/gg.png')} style={styles.logo} />
-
       <Text style={styles.selectText}>Enter Your Text</Text>
 
       <View style={styles.inputContainer}>
@@ -82,13 +84,23 @@ const Input = () => {
           <Text style={styles.correctedText}>Corrected Sentence:</Text>
           <Text style={styles.outputText}>{correctedText}</Text>
 
+          <TouchableOpacity onPress={copyToClipboard} style={styles.copyButton}>
+            <Text style={styles.copyButtonText}>Copy</Text>
+          </TouchableOpacity>
+
           {wrongWords.length > 0 && (
             <View style={styles.errorContainer}>
               <Text style={styles.errorTitle}>Incorrect Words:</Text>
-              {wrongWords.map((item, index) => (
-                <Text key={index} style={styles.errorText}>
-                  {item.word}: {item.suggestions.join(', ')}
-                </Text>
+              {wrongWords.map((word, index) => (
+                <View key={index} style={styles.wordBox}>
+                  <Text style={styles.wordText}>{word}</Text>
+                </View>
+              ))}
+              <Text style={styles.errorTitle}>Suggestions:</Text>
+              {suggestions.map((suggestion, index) => (
+                <View key={index} style={styles.suggestionBox}>
+                  <Text style={styles.suggestionText}>{suggestion}</Text>
+                </View>
               ))}
             </View>
           )}
@@ -119,7 +131,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: '100%',
-    height: 100, // Fixed height for the input box
+    height: 100,
     borderWidth: 2,
     borderColor: 'gold',
     borderRadius: 10,
@@ -160,6 +172,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
+  copyButton: {
+    backgroundColor: 'gold',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  copyButtonText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
   errorContainer: {
     marginTop: 10,
   },
@@ -169,8 +193,24 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
   },
-  errorText: {
-    color: 'orange',
+  wordBox: {
+    backgroundColor: 'red',
+    padding: 10,
+    marginBottom: 5,
+    borderRadius: 5,
+  },
+  wordText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  suggestionBox: {
+    backgroundColor: 'orange',
+    padding: 10,
+    marginBottom: 5,
+    borderRadius: 5,
+  },
+  suggestionText: {
+    color: 'black',
     fontSize: 16,
   },
 });

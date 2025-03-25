@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, Switch } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
 const Settings = () => {
   return (
@@ -9,33 +9,26 @@ const Settings = () => {
       <Text style={styles.title}>Settings</Text>
       
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Appearance</Text>
-        <View style={styles.settingRow}>
-          <Text style={styles.text}>Dark Mode (only)</Text>
-          <Switch value={true} />
-        </View>
-      </View>
-
-      <View style={styles.section}>
         <Text style={styles.sectionTitle}>App Information</Text>
-        <Text style={styles.text}>• Version: 1.0.0</Text>
-        <Text style={styles.text}>• Developed by: LangMaster Team of MKR</Text>
+        <Text style={styles.text}>◉ Version: 1.0.0</Text>
+        <Text style={styles.text}>◉ Developed by: LangMaster Team of MKR</Text>
       </View>
       
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Instructions</Text>
-        <Text style={styles.text}>1. Enter text manually or use OCR/STT to capture input.</Text>
-        <Text style={styles.text}>2. Tap 'Analyze' to see the analysis.</Text>
-        <Text style={styles.text}>3. Use the Meaning, Synonym, and Translation features with More Option.</Text>
-        <Text style={styles.text}>4. For more details, refer to the 'INPUT' section.</Text>
+        <Text style={styles.text}>◉ Enter text manually for analysis.</Text>
+        <Text style={styles.text}>◉ Tap 'Analyze' to see the results.</Text>
+        <Text style={styles.text}>◉ Use the Meaning feature to find Meaning of word.</Text>
+        <Text style={styles.text}>◉ Use the Synonym feature to find Synonym of word.</Text>
+        <Text style={styles.text}>◉ Use the Translation feature to Translate sentences.</Text>
+        <Text style={styles.text}>◉ For more details, refer to the 'INPUT' section.</Text>
       </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>What's New</Text>
-        <Text style={styles.text}>• Improved OCR accuracy</Text>
-        <Text style={styles.text}>• Faster Speech-to-Text conversion</Text>
-        <Text style={styles.text}>• New language support added</Text>
-        <Text style={styles.text}>• UI enhancements and bug fixes</Text>
+        <Text style={styles.text}>◉ Faster word processing and response time.</Text>
+        <Text style={styles.text}>◉ Improved translation accuracy.</Text>
+        <Text style={styles.text}>◉ UI enhancements for a seamless experience.</Text>
       </View>
     </ScrollView>
   );
@@ -44,9 +37,9 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: 'black',
     padding: 20,
     alignItems: 'center',
+    backgroundColor: 'black', // Set background color to black
   },
   logo: {
     width: 200,
@@ -74,13 +67,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
   },
-  settingRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   text: {
-    color: 'green',
+    color: 'white',
     fontSize: 16,
     marginBottom: 5,
   }
